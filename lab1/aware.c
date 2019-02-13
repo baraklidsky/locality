@@ -1,9 +1,9 @@
 #include <stdlib.h>
  
 // define the matrix dimensions A is MxP, B is PxN, and C is MxN
-#define M 4096
-#define N 4096
-#define P 4096
+#define M 2048
+#define N 2048
+#define P 2048
  
 // calculate C = AxB
 void matmul(float **a, float **b, float **c) {
@@ -23,6 +23,11 @@ void matmul(float **a, float **b, float **c) {
                   for(j=0; j<blockSize; j++)
                       for(k=0; k<blockSize; k++)
                           c[bi+i][bj+j] += a[bi+i][bk+k]*b[bk+k][bj+j];
+  /*
+                          c[bi+i + 1][bj+j] += a[bi+i + 1][bk+k]*b[bk+k][bj+j];
+                          c[bi+i][bj+j + 1] += a[bi+i][bk+k]*b[bk+k][bj+j + 1];
+                          c[bi+i + 1][bj+j + 1] += a[bi+i + 1][bk+k]*b[bk+k][bj+j + 1];
+                          */
 }
  
 // function to allocate a matrix on the heap
